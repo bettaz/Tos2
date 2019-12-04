@@ -56,4 +56,21 @@ public class OrderCalculatorTest {
         double total = calculator.getOrderPrice(simpleOrder);
         assertEquals(17.5, total,0.0);
     }
+    /**Test an order with more than 5 sandwiches
+     * with a bill of less than 50€ of total order but more than 10€,
+     * less than 30 entries.
+     */
+    @Test
+    public void MoreThanFiveSandwichOrder_Test() throws TakeAwayBillException{
+        List<MenuItem> sandwichOrder = new ArrayList<MenuItem>();
+        OrderTotalBill calculator = new OrderTotalBill();
+        sandwichOrder.add(new MenuItem("panino 1",5.0, MenuItem.itemType.Panino));
+        sandwichOrder.add(new MenuItem("panino 2",6.0, MenuItem.itemType.Panino));
+        sandwichOrder.add(new MenuItem("panino 3",3.5,MenuItem.itemType.Panino));
+        sandwichOrder.add(new MenuItem("panino 4",5.75,MenuItem.itemType.Panino));
+        sandwichOrder.add(new MenuItem("panino 5",3.10,MenuItem.itemType.Panino));
+        sandwichOrder.add(new MenuItem("panino 6",2.0,MenuItem.itemType.Panino));
+        double total = calculator.getOrderPrice(sandwichOrder);
+        assertEquals(24.35, total,0.0);
+    }
 }
