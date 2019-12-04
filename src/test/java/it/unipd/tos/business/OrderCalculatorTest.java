@@ -40,22 +40,6 @@ public class OrderCalculatorTest {
         double total = calculator.getOrderPrice(voidOrder);
         assertEquals(0.0, total,0.0);
     }
-    /** Test simple bill
-     * with more than 10€, less than 5 sandwiches, less than 50€ of total order,
-     * less than 30 entries
-     */
-    @Test
-    public void SimpleOrderList_Test() throws TakeAwayBillException
-    {
-        List<MenuItem> simpleOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
-        simpleOrder.add(new MenuItem("panino 1",5.0, MenuItem.itemType.Panino));
-        simpleOrder.add(new MenuItem("panino 2",6.0, MenuItem.itemType.Panino));
-        simpleOrder.add(new MenuItem("cola",3.5,MenuItem.itemType.Bevanda));
-        simpleOrder.add(new MenuItem("oliva ascolana", 3.0, MenuItem.itemType.Fritto));
-        double total = calculator.getOrderPrice(simpleOrder);
-        assertEquals(17.5, total,0.0);
-    }
     /**Test an order with more than 5 sandwiches
      * with a bill of less than 50€ of total order but more than 10€,
      * less than 30 entries.
@@ -72,5 +56,18 @@ public class OrderCalculatorTest {
         sandwichOrder.add(new MenuItem("panino 6",2.0,MenuItem.itemType.Panino));
         double total = calculator.getOrderPrice(sandwichOrder);
         assertEquals(24.35, total,0.0);
+    }
+    /**Test an order with more than 50€ total bill
+     * with a less than 5 sandwich but more than 10€ of bill,
+     * less than 30 entries
+     */
+    @Test
+    public void MoreThanFiftyEurosTotal_Test() throws TakeAwayBillException{
+        List<MenuItem> discountOrder = new ArrayList<MenuItem>();
+        OrderTotalBill calculator = new OrderTotalBill();
+        discountOrder.add(new MenuItem("panino d'oro",48.0, MenuItem.itemType.Panino));
+        discountOrder.add(new MenuItem("Cola d'oro",10.0,MenuItem.itemType.Bevanda));
+        double total = calculator.getOrderPrice(discountOrder);
+        assertEquals(52.2, total,0.0);
     }
 }
