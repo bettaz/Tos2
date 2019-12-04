@@ -90,4 +90,16 @@ public class OrderCalculatorTest {
         }
         calculator.getOrderPrice(oversizedOrder);
     }
+    /**Undersized commission test
+     * apply 0.10€ commission if the order is less than 10€
+     */
+    @Test
+    public void LessThanTenEurosTotal_Test() throws TakeAwayBillException{
+        List<MenuItem> commissionedOrder = new ArrayList<MenuItem>();
+        OrderTotalBill calculator = new OrderTotalBill();
+        commissionedOrder.add(new MenuItem("panino economico",2.0, MenuItem.itemType.Panino));
+        commissionedOrder.add(new MenuItem("Cola economica",1.0,MenuItem.itemType.Bevanda));
+        double total = calculator.getOrderPrice(commissionedOrder);
+        assertEquals(3.1, total,0.0);
+    }
 }
