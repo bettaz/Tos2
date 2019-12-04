@@ -70,4 +70,24 @@ public class OrderCalculatorTest {
         double total = calculator.getOrderPrice(discountOrder);
         assertEquals(52.2, total,0.0);
     }
+    /**Oversized order test
+     * throws exceptions if the order have more than 30 elements
+     */
+    @org.junit.Rule
+    public ExpectedException exc = ExpectedException.none();
+
+    @Test
+    public void OversizedOrder_Test() throws TakeAwayBillException{
+        exc.expect(TakeAwayBillException.class);
+        exc.expectMessage("Raggiunto il limite di 30 elementi");
+
+        List<MenuItem> oversizedOrder = new ArrayList<MenuItem>();
+        OrderTotalBill calculator = new OrderTotalBill();
+
+        int i;
+        for(i=0; i<31; i++){
+            oversizedOrder.add(new MenuItem(new String("panino "+i),1.0, MenuItem.itemType.Panino));
+        }
+        calculator.getOrderPrice(oversizedOrder);
+    }
 }
