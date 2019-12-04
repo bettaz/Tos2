@@ -30,4 +30,14 @@ public class OrderCalculatorTest {
         double total = calculator.getOrderPrice(simpleOrder);
         assertEquals(17.5, total,0.0);
     }
+    /** Test void bill
+     */
+    @Test
+    public void  VoidOrderList_Test() throws TakeAwayBillException
+    {
+        List<MenuItem> voidOrder = new ArrayList<MenuItem>();
+        OrderTotalBill calculator = new OrderTotalBill();
+        double total = calculator.getOrderPrice(voidOrder);
+        assertEquals(0.0, total,0.0);
+    }
 }
