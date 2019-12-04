@@ -1,17 +1,14 @@
 package it.unipd.tos.business;
 
-import it.unipd.tos.model.MenuItem;
 import it.unipd.tos.business.exception.TakeAwayBillException;
-
+import it.unipd.tos.model.MenuItem;
 import org.junit.Test;
-import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-
-import static org.hamcrest.core.StringContains.containsString;
-import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class OrderCalculatorTest {
     /** Test simple bill
