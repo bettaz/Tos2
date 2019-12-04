@@ -22,7 +22,7 @@ public class OrderCalculatorTest {
     public void SimpleOrderList_Test() throws TakeAwayBillException
     {
         List<MenuItem> simpleOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
         simpleOrder.add(new MenuItem("panino 1",5.0, MenuItem.itemType.Panino));
         simpleOrder.add(new MenuItem("panino 2",6.0, MenuItem.itemType.Panino));
         simpleOrder.add(new MenuItem("cola",3.5,MenuItem.itemType.Bevanda));
@@ -36,7 +36,7 @@ public class OrderCalculatorTest {
     public void  VoidOrderList_Test() throws TakeAwayBillException
     {
         List<MenuItem> voidOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
         double total = calculator.getOrderPrice(voidOrder);
         assertEquals(0.0, total,0.0);
     }
@@ -47,7 +47,7 @@ public class OrderCalculatorTest {
     @Test
     public void MoreThanFiveSandwichOrder_Test() throws TakeAwayBillException{
         List<MenuItem> sandwichOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
         sandwichOrder.add(new MenuItem("panino 1",5.0, MenuItem.itemType.Panino));
         sandwichOrder.add(new MenuItem("panino 2",6.0, MenuItem.itemType.Panino));
         sandwichOrder.add(new MenuItem("panino 3",3.5,MenuItem.itemType.Panino));
@@ -64,7 +64,7 @@ public class OrderCalculatorTest {
     @Test
     public void MoreThanFiftyEurosTotal_Test() throws TakeAwayBillException{
         List<MenuItem> discountOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
         discountOrder.add(new MenuItem("panino d'oro",48.0, MenuItem.itemType.Panino));
         discountOrder.add(new MenuItem("Cola d'oro",10.0,MenuItem.itemType.Bevanda));
         double total = calculator.getOrderPrice(discountOrder);
@@ -82,7 +82,7 @@ public class OrderCalculatorTest {
         exc.expectMessage("Raggiunto il limite di 30 elementi");
 
         List<MenuItem> oversizedOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
 
         int i;
         for(i=0; i<31; i++){
@@ -96,7 +96,7 @@ public class OrderCalculatorTest {
     @Test
     public void LessThanTenEurosTotal_Test() throws TakeAwayBillException{
         List<MenuItem> commissionedOrder = new ArrayList<MenuItem>();
-        OrderTotalBill calculator = new OrderTotalBill();
+        OrderCalculator calculator = new OrderCalculator();
         commissionedOrder.add(new MenuItem("panino economico",2.0, MenuItem.itemType.Panino));
         commissionedOrder.add(new MenuItem("Cola economica",1.0,MenuItem.itemType.Bevanda));
         double total = calculator.getOrderPrice(commissionedOrder);
